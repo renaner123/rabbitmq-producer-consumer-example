@@ -1,48 +1,55 @@
-# RabbitMQ + Spring Boot: Fundamentos e Setup
+# Projeto RabbitMQ (Exemplo Producer/Consumer)
 
-Este repositório acompanha o **[Vídeo 1](https://www.youtube.com/watch?v=tyn0aS41ybw) da série RabbitMQ com Spring Boot**.
+Este repositório contém um exemplo simples de integração com RabbitMQ usando Spring Boot.
+O objetivo é demonstrar como publicar mensagens (producer) em um Exchange e, em um vídeo futuro, criar o consumer para consumir essas mensagens.
 
-Neste primeiro vídeo o foco é:
+Resumo rápido
+- Producer: implementado em [producer/demo](producer/demo), recebe requisições HTTP e publica mensagens no RabbitMQ.
+- Consumer: ainda será implementado (próximo vídeo).
+- RabbitMQ: configuração de execução via [docker-compose.yml](docker-compose.yml) na raiz do repositório.
 
-- Entender os conceitos principais do RabbitMQ
-- Visualizar o fluxo de mensagens
-- Subir o RabbitMQ com Docker
-- Explorar o painel de administração
+Estrutura do repositório
 
----
+- `docker-compose.yml` - configura e sobe um container RabbitMQ (management UI incluída).
+- `producer/` - microserviço Spring Boot que publica mensagens no RabbitMQ. O README do producer está em `producer/README.md`.
+- `consumer/` - esqueleto do consumer (implementação será feita no próximo vídeo).
 
-## Conteúdo atual do projeto
+Requisitos
+- Java 17
+- Maven (ou usar o wrapper incluído `mvnw` / `mvnw.cmd`)
+- Docker + Docker Compose (para subir o RabbitMQ localmente)
 
-Este repositório contém apenas o que foi apresentado no **Vídeo 1**:
+Configurações importantes
+- O RabbitMQ usado no docker-compose expõe as portas 5672 (AMQP) e 15672 (management UI).
+- Credenciais padrão do docker-compose: usuário `admin`, senha `admin123`.
+- As propriedades do producer (host, port, username, password) podem ser sobrepostas por variáveis de ambiente:
+  - SPRING_RABBITMQ_HOST
+  - SPRING_RABBITMQ_PORT
+  - SPRING_RABBITMQ_USERNAME
+  - SPRING_RABBITMQ_PASSWORD
 
-- [Diagrama](fluxo-rabbit-direct.png)
-- [Docker Compose](docker-compose.yml)
-## Como subir o RabbitMQ
+Como rodar localmente
 
-Execute:
+1) Subir o RabbitMQ com Docker Compose (a partir da raiz do repositório):
 
-Clone o projeto e acesse a pasta raiz:
-
-Execute:
-
-```bash
+```powershell
+# Windows PowerShell
 docker-compose up -d
 ```
 
-Acesse o painel em:
+O management UI ficará disponível em: http://localhost:15672 (usuário: `admin`, senha: `admin123`).
 
-> http://localhost:15672
+2) Rodar o Producer:
 
-Usuário e senha:
+- Veja o [producer/README.md](producer/README.md) para instruções e detalhes específicos do producer.
 
-> admin / admin123
 
-## Continuação da série
+Próximo passo / Próximo vídeo
+- No próximo vídeo será implementado o consumer que irá se conectar às filas e processar as mensagens publicadas pelo producer. O código será adicionado à pasta `consumer/`.
 
-Nos próximos vídeos vamos evoluir esse projeto com:
+Contribuições
+- Pull requests e issues são bem-vindos. Abra uma issue se quiser sugerir melhorias ou relatar problemas.
 
-- Producer em Spring Boot
-- Consumer em Spring Boot + cenários com Ack, Nack e Requeue
-- Lidando com mensagens em produção pela interface
+Licença
+- Este projeto está sob a licença presente no arquivo `LICENSE`.
 
-Esse repositório será atualizado conforme os próximos vídeos forem publicados.
