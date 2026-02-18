@@ -1,0 +1,8 @@
+POST http://localhost:8080/order
+Content-Type: application/json
+
+{
+  "orderId": "ORD-010",
+  "description": "Notebook Dell",
+  "quantity": 10
+}
