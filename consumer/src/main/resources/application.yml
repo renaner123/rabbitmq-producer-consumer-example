@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: rabbitmq-consumer
+  # Torna a aplicação NON-WEB: não inicia servidor Tomcat/Netty
+  main:
+    web-application-type: none
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin123
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        max-concurrency: 1
+        prefetch: 1
+        retry:
+          enabled: false
+
+logging:
+  level:
+    org.springframework.amqp: DEBUG
+    com.rabbitmq: INFO
