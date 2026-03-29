@@ -14,6 +14,12 @@ O objetivo é demonstrar o fluxo completo: publicar mensagens (producer) em um E
 - `producer/` - microserviço Spring Boot que publica mensagens no RabbitMQ. Guia em `producer/README.md`.
 - `consumer/` - microserviço Spring Boot que consome mensagens do RabbitMQ. Guia em `consumer/README.md`.
 
+## 🎥 Playlist do YouTube
+
+Se você quiser acompanhar a explicação completa passo a passo deste projeto, veja a playlist:
+
+👉 [Assistir playlist completa](https://youtube.com/playlist?list=PL1mqgZnEEC2IxUb9SDZlqCzVKQLoiRiHC&si=QNjDV9qH84whEL8E)
+
 ## Requisitos
 - Docker + Docker Compose
 
